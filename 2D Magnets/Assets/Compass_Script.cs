@@ -54,7 +54,7 @@ public class Compass_Script : MonoBehaviour
             Debug.DrawLine(transform.position, fin_direct, Color.red);
 
             //rotates toward new direction
-            var vec_pointing = (transform.right - transform.position);
+            var vec_pointing = (transform.right);
             var vec_direct = (vec_pointing / vec_pointing.magnitude);
 
             float angle = Vector3.Angle(vec_direct, fin_direct);
@@ -63,8 +63,14 @@ public class Compass_Script : MonoBehaviour
 
             if (angle > 0)
             {
-                Vector3 newDir = Vector3.RotateTowards(vec_pointing, vec_direct, speed, 0.0f);
-                transform.rotation = Quaternion.LookRotation(newDir);
+                Vector3 newDir = Vector3.RotateTowards(vec_pointing, fin_direct, speed, 0.0f);
+                Quaternion q = new Quaternion();
+                q.SetFromToRotation(vec_pointing, newDir);
+                Debug.Log("Q" + q);
+                Debug.Log("newDir" + newDir);
+                Debug.Log("vec_pointing" + vec_pointing);
+                Debug.Log("VD" + vec_direct);
+                transform.rotation = q * transform.rotation;
                 /*
                 var dir_pivot = vec_pointing;
                 var rot_y = 100.268f * Time.deltaTime;
