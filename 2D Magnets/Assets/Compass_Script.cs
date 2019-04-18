@@ -66,20 +66,11 @@ public class Compass_Script : MonoBehaviour
                 Vector3 newDir = Vector3.RotateTowards(vec_pointing, fin_direct, speed, 0.0f);
                 Quaternion q = new Quaternion();
                 q.SetFromToRotation(vec_pointing, newDir);
-                //Debug.Log("Q" + q);
-                //Debug.Log("newDir" + newDir);
-                //Debug.Log("vec_pointing" + vec_pointing);
-                //Debug.Log("VD" + vec_direct);
+                
                 Debug.Log("fin_direct = " + fin_direct);
                 Debug.DrawLine(transform.position, newDir, Color.red);
                 transform.rotation = q * transform.rotation;
-                /*
-                var dir_pivot = vec_pointing;
-                var rot_y = 100.268f * Time.deltaTime;
-                Vector3 rotationVector = new Vector3(0f, rot_y, 0f);
-                dir_pivot = Quaternion.Euler(rotationVector) * dir_pivot;
-                point_N = dir_pivot + transform.position;
-                */
+                
             }
 
 
