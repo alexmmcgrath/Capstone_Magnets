@@ -6,8 +6,9 @@ public class Magnet_Script : MonoBehaviour
 {
     
     public float DistanceMultiplier;
-    public float GravitaionalPull;
+    public float MagneticPull;
     public float CapsuleRadius;
+    public float pole_point;
 
     public Vector3 North;
     public Vector3 South;
@@ -19,8 +20,8 @@ public class Magnet_Script : MonoBehaviour
 
     void Start()
     {
-        North = new Vector3(transform.position.x - 1.75f, transform.position.y, transform.position.z);
-        South = new Vector3(transform.position.x + 1.75f, transform.position.y, transform.position.z);
+        North = new Vector3(transform.position.x - pole_point, transform.position.y, transform.position.z);
+        South = new Vector3(transform.position.x + pole_point, transform.position.y, transform.position.z);
         Collider[] colliders = Physics.OverlapCapsule(North, South, 2.5f, FieldLines); //put capsule radius where 2.5 is 
 
     }
@@ -44,7 +45,7 @@ public class Magnet_Script : MonoBehaviour
 
             float distance = average_attract.sqrMagnitude * DistanceMultiplier + 1;
 
-            magnetic.AddForce(average_attract.normalized * (GravitaionalPull / distance) * magnetic.mass * Time.fixedDeltaTime);
+            magnetic.AddForce(average_attract.normalized * (MagneticPull / distance) * magnetic.mass * Time.fixedDeltaTime);
 
         }
         
