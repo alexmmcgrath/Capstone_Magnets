@@ -27,7 +27,7 @@ public class Compass_Script : MonoBehaviour
         
         Magnet_Script magnet = magnets.GetComponent<Magnet_Script>();
 
-        Debug.Log("This is magnet.colliders " + magnet.colliders);
+        //Debug.Log("This is magnet.colliders " + magnet.colliders);
         /*
         foreach (var collider in magnet.colliders)
         {
@@ -39,7 +39,7 @@ public class Compass_Script : MonoBehaviour
             Debug.Log("check is " + check + " First Check");
         }
         */
-        Debug.Log("check is " + check + " Second Check");
+        //Debug.Log("check is " + check + " Second Check");
         if (true) { //set true back to check
             //creates new direction
             var attractor = (magnet.North - transform.position);
@@ -67,8 +67,8 @@ public class Compass_Script : MonoBehaviour
                 Quaternion q = new Quaternion();
                 q.SetFromToRotation(vec_pointing, newDir);
                 
-                Debug.Log("fin_direct = " + fin_direct);
-                Debug.DrawLine(transform.position, newDir, Color.red);
+                //Debug.Log("fin_direct = " + fin_direct);
+               // Debug.DrawLine(transform.position, newDir, Color.red);
                 transform.rotation = q * transform.rotation;
                 
             }
