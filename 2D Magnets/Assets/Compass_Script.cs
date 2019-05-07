@@ -8,6 +8,7 @@ public class Compass_Script : MonoBehaviour
 {
     public float radian = 1.75f; //radias per sec
     public GameObject magnets;
+    //public bool is_Magnetic = false;
     
     //public Vector3 point_N;
     
@@ -61,8 +62,11 @@ public class Compass_Script : MonoBehaviour
 
             float speed = (radian * Time.deltaTime);
 
+            
+
             if (angle > 0)
             {
+                
                 Vector3 newDir = Vector3.RotateTowards(vec_pointing, fin_direct, speed, 0.0f);
                 Quaternion q = new Quaternion();
                 q.SetFromToRotation(vec_pointing, newDir);
