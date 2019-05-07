@@ -20,18 +20,23 @@ public class Magnet_Script : MonoBehaviour
 
     void Start()
     {
-        North = new Vector3(transform.position.x - pole_point, transform.position.y, transform.position.z);
-        South = new Vector3(transform.position.x + pole_point, transform.position.y, transform.position.z);
+        North = new Vector2(transform.position.x - pole_point, transform.position.y);
+        South = new Vector2(transform.position.x + pole_point, transform.position.y);
         Collider[] colliders = Physics.OverlapCapsule(North, South, 2.5f, FieldLines); //put capsule radius where 2.5 is 
 
     }
     void FixedUpdate()
     {
-        Collider[] colliders = Physics.OverlapCapsule(North, South, 2.5f, FieldLines);
-        
-        foreach(var collider in colliders)
+
+        Vector2 SUBTR = South - North; 
+        Vector2 SIZE = new Vector2(SUBTR.magnitude + (2 * CapsuleRadius), (2*CapsuleRadius));
+        float angle = Mathf.Atan2(SUBTR.y, SUBTR.x);
+        Collider2D[] colliders = Physics2D.OverlapCapsuleAll(transform.position, SIZE, CapsuleDirection2D.Horizontal, angle, FieldLines);
+        //Collider[] colliders = Physics.OverlapCapsule(North, South, 2.5f, FieldLines);
+
+        foreach (var collider in colliders)
         {
-            Rigidbody magnetic = collider.GetComponent<Rigidbody>();
+            Rigidbody2D magnetic = collider.GetComponent<Rigidbody2D>();
 
             if (magnetic == null)
             {
