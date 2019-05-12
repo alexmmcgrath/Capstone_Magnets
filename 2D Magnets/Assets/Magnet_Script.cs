@@ -17,7 +17,7 @@ public class Magnet_Script : MonoBehaviour
 
     public LayerMask FieldLines;
     public Collider[] colliders;
-    //public Vector3 fin_direct;
+    
 
     void Start()
     {
